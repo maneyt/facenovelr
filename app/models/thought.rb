@@ -1,3 +1,3 @@
 class Thought < ActiveRecord::Base
-  validates presence: true
+  validates :body, presence: true
 end
