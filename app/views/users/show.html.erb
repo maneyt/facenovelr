@@ -1,5 +1,9 @@
-<% if current_user != @user %>
-  <%= button_to "Send a friend request", [@user, @friendship] %>
+<% if current_user.can_friend(@user) %>
+  <% if current_user.received_friend_request_from?(@user) %>
+    <%= button_to "Accept friend", [current_user.friend_request_from(@user), :accepted_friendship] %>
+  <% else %>
+    <%= button_to "Send a friend request", [@user, @friendship] %>
+  <% end %>
 <% end %>
 
 <%= @user.name %>
