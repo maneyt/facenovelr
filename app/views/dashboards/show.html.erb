@@ -1,1 +1,18 @@
-sdodfjsd
+<div>Your Thoughts</div>
+<ul>
+  <% @my_thoughts.each do |thought| %>
+    <li><%= thought.body %></li>
+  <% end %>
+</ul>
+<div>Share Your Thoughts</div>
+<%= form_for @thought do |form| %>
+  <div>
+    <%= render "errors", target: @thought %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_field :body %>
+  </div>
+  <div>
+    <%= form.submit "Share This Thought" %>
+  </div>
+<% end %>
