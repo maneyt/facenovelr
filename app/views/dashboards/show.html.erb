@@ -5,7 +5,7 @@
   <% end %>
 </ul>
 <div>Share Your Thoughts</div>
-<%= form_for @thought do |form| %>
+<%= form_for [current_user, @thought] do |form| %>
   <div>
     <%= render "errors", target: @thought %>
   <div>

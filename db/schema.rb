@@ -42,10 +42,11 @@ ActiveRecord::Schema.define(version: 20140728180740) do
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "thoughts", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.string   "body",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",     null: false
+    t.integer  "receiver_id", null: false
+    t.string   "body",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: true do |t|

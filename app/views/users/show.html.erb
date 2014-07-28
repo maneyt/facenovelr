@@ -1,3 +1,35 @@
+<<<<<<< HEAD
 <% if current_user != @user %>
   <%= button_to "Send a friend request", [@user, @friendship] %>
 <% end %>
+=======
+<%= @user.name %>
+
+<p>Birthday: <%= @user.birthday.to_formatted_s(:long) %></p>
+
+<h2>Create a new thought</h2>
+<%= form_for [@user, @thought] do |form| %>
+  <%= render "errors", target: @thought %>
+  <%= form.label :body, "Enter your thought: " %>
+  <%= form.text_field :body %>
+  <%= form.submit "Submit" %>
+<% end %>
+
+<h2>Thoughts from <%= @user.name %></h2>
+<% @sent_thoughts.each do |thought| %>
+  <li>
+    <%= thought.body %>
+    ...
+    thought <%= time_ago_in_words(thought.created_at) %> ago.
+  </li>
+<% end %>
+
+<h2>Thoughts to <%= @user.name %></h2>
+<% @received_thoughts.each do |thought| %>
+  <li>
+    <%= thought.body %>
+    ...
+    thought <%= time_ago_in_words(thought.created_at) %> ago.
+  </li>
+<% end %>
+>>>>>>> 8209ad7... Users now have individual profile pages

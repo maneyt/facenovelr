@@ -5,6 +5,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+    @received_thoughts = Thought.where(receiver_id: @user.id)
+    @sent_thoughts = @user.thoughts
+    @thought = Thought.new
+  end
+
   def create
     @user = sign_up(user_params)
 

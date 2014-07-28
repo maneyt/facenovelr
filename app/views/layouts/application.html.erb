@@ -7,10 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<<<<<<< HEAD
 <% if signed_in? %>
   <h2> You are signed in as <%= current_user.name %></h2>
   <%= button_to "Sign out", :session, method: :delete %>
 <% end %>
+=======
+  <h1><%= link_to "Facenovelr", root_path %></h1>
+  <% if signed_in? %>
+    <h3> You are signed in as <%= link_to current_user.name, current_user %></h3>
+  <% end %>
+>>>>>>> 8209ad7... Users now have individual profile pages
 
 <%= yield %>
 
