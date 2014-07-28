@@ -1,7 +1,6 @@
 class ThoughtsController < ApplicationController
   def create
-    thought = current_user.thoughts.new(thought_params)
-    thought.save
+    current_user.thoughts.create(thought_params)
     redirect_to root_path
   end
   
