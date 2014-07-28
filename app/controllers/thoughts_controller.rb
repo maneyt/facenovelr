@@ -1,7 +1,12 @@
 class ThoughtsController < ApplicationController
   def create
-    current_user.thoughts.create(thought_params)
-    redirect_to root_path
+    @my_thoughts = current_user.thoughts
+    @thought = current_user.thoughts.new(thought_params)
+    if @thought.save
+      redirect_to root_path
+    else
+      render "app/views/dashboards/show"
+    end
   end
   
   private
