@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140728143855) do
+=======
+ActiveRecord::Schema.define(version: 20140728150115) do
+>>>>>>> Add photo table, users can upload photos via paperclip
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "thoughts", force: true do |t|
     t.integer  "user_id",    null: false
     t.string   "body",       null: false
@@ -23,6 +28,20 @@ ActiveRecord::Schema.define(version: 20140728143855) do
     t.datetime "updated_at", null: false
   end
 
+=======
+  create_table "photos", force: true do |t|
+    t.integer  "user_id",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "picture_file_file_name"
+    t.string   "picture_file_content_type"
+    t.integer  "picture_file_file_size"
+    t.datetime "picture_file_updated_at"
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
+
+>>>>>>> Add photo table, users can upload photos via paperclip
   create_table "users", force: true do |t|
     t.string   "email",           null: false
     t.string   "password_digest", null: false

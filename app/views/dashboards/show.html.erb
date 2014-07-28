@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>Your Thoughts</div>
 <ul>
   <% @my_thoughts.each do |thought| %>
@@ -16,3 +17,22 @@
     <%= form.submit "Share This Thought" %>
   </div>
 <% end %>
+=======
+<%= form_for @photo do |form| %>
+  <div>
+    <%= form.label "Upload new photo" %>
+  </div>
+  <div>
+    <%= form.file_field :picture_file %>
+  </div>
+  <div>
+    <%= form.submit "Add photo" %>
+  </div>
+<% end %>
+
+<ul>
+  <% current_user.photos.each do |photo| %>
+    <li><%= image_tag photo.picture_file.url %></li>
+  <% end %>
+</ul>
+>>>>>>> Add photo table, users can upload photos via paperclip
