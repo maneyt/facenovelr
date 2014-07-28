@@ -2,6 +2,7 @@ class ThoughtsController < ApplicationController
   def create
     @my_thoughts = current_user.thoughts
     @thought = current_user.thoughts.new(thought_params)
+    @photo = Photo.new
     if @thought.save
       redirect_to root_path
     else
