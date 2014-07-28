@@ -1,7 +1,15 @@
 <%= form_for @user do |form| %>
   <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
     <%= form.label :email %>
     <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :birthday %>
+    <%= form.date_field :birthday %>
   </div>
   <div>
     <%= form.label :password %>
