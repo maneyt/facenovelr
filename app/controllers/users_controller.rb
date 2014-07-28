@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @thought = Thought.new
     @user = User.find(params[:id])
     @received_thoughts = Thought.where(receiver_id: @user.id)
     @sent_thoughts = @user.thoughts
-    @thought = Thought.new
   end
 
   def create
@@ -21,11 +21,6 @@ class UsersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
-    @friendship = Friendship.new
   end
 
   private

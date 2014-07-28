@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :friendships, only: [] do
     resource :accepted_friendship, only: [:create]
   end
-  resources :thoughts, only: [:create, :destroy]
   resources :users, only: [:new, :create, :show] do 
+    resources :thoughts, only: [:create, :destroy]
     resources :photos, only: [:index]
   end
   resources :photos, only: [:create]
