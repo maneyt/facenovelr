@@ -1,12 +1,12 @@
 class ThoughtsController < ApplicationController
   def create
-    receiver = User.find(params[:user_id])
+    receiver = User.friendly.find(params[:user_id])
     @my_thoughts = current_user.thoughts
     @photo = Photo.new
     @thought = current_user.thoughts.new(thought_params.merge(receiver_id: receiver.id))
 
     if @thought.save
-      redirect_to root_path
+      redirect_to :back
     else
       render "app/views/dashboards/show"
     end

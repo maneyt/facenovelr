@@ -1,4 +1,12 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
+  validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/}
+  validates :email, uniqueness: true, presence: true
+  validates :password_digest, presence: true
+  validates :birthday, presence: true
+ 
   has_many :thoughts, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id

@@ -9,7 +9,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-
+gem 'monban-generators'
+gem 'paperclip'
+gem 'friendly_id', '~> 5.0.0'
 gem 'monban-generators'
 gem 'paperclip'
 gem 'bourbon'
