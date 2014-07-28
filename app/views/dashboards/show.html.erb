@@ -33,3 +33,15 @@
 <% end %>
 
 <%= link_to "My photos", [current_user, :photos] %>
+
+<h4>Friends</h4>
+<ul>
+  <% current_user.friends.each do |friend| %>
+    <li><%= link_to friend.name, friend %></li>
+  <% end %>
+</ul>
+<h4>Friend Requests</h4>
+<% @friend_requests.each do |friend_request| %>
+  <li><%= friend_request.friender.name %> wants to be your friend</li>
+  <%= button_to "Accept friend", [friend_request, :accepted_friendship] %>
+<% end %>
