@@ -4,6 +4,11 @@ class PhotosController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    user = User.find(params[:user_id])
+    @photos = user.photos
+  end
+
   private
 
   def photo_params
