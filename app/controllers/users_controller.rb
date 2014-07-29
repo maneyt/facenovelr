@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @received_thoughts = Thought.where(receiver_id: @user.id)
     @sent_thoughts = @user.thoughts
+    @friendship = Friendship.new
   end
 
   def create
