@@ -61,6 +61,6 @@
     <div>
       <%= link_to "All My photos", [current_user, :photos] %>
     </div>
-    <%= render partial: "photos/thumbnails", collection: @photos, as: :photo %>
+    <%= render partial: "photos/thumbnails", collection: @my_photos, as: :photo %>
   </div>
 </div>
