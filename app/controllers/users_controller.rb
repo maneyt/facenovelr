@@ -49,6 +49,7 @@ class UsersController < ApplicationController
       :birthday,
       :location,
       :about_me,
+      :profile_picture,
     )
   end
 end
