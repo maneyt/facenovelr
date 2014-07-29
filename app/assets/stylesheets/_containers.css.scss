@@ -1,0 +1,16 @@
+.outer-container {
+  @include outer-container;
+  
+  padding: 50px;
+  border: solid black;
+}
+
+.left-container {
+  @include span-columns(4);
+ 
+  padding: 0px;
+}
+
+.right-container {
+  @include span-columns(8);
+}

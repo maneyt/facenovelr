@@ -15,7 +15,9 @@
   <%= button_to "Sign out", :session, method: :delete %>
 <% end %>
 
-<%= yield %>
+<div class="outer-container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @friendship = Friendship.new
     @thought = Thought.new
     @user = User.find(params[:id])
     @received_thoughts = Thought.where(receiver_id: @user.id)
