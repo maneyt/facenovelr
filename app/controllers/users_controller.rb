@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @thought = Thought.new
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:slug])
     @received_thoughts = Thought.where(receiver_id: @user.id)
     @sent_thoughts = @user.thoughts
   end
