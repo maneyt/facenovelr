@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :accepted_friendships, -> { where(accepted: true) }, foreign_key: :friendee_id, class_name: "Friendship"
   has_many :friends, through: :accepted_friendships, source: :friender
 
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
+  has_many :received_messages, class_name: "Message", foreign_key: :recipient_id
+
   def incoming_friend_requests
     friendships.where(accepted: false)
   end
@@ -46,5 +49,9 @@ class User < ActiveRecord::Base
 
   def unlike_photo(photo)
     liked_photos.destroy(photo)
+  end
+
+  def all_messages
+    Message.where("sender_id = :id or recipient_id = :id", { id: id }).order("created_at ASC")
   end
 end
