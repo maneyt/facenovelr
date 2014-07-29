@@ -10,7 +10,9 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @current_photo = Photo.find(params[:id])
+    @likes = @current_photo.likes
+    @likers =@current_photo.likers
   end
 
   private

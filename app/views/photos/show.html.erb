@@ -1,8 +1,19 @@
-<%= render @photo %>
-<div>
-  <% if current_user.liked_photos.include?(@photo) %>
-    <%= button_to "Unlike this Photo", [@photo, :like], method: :delete %>
-  <% else %>
-    <%= button_to "Like this Photo", [@photo, :like] %>
-  <% end %>
+<div class="right-container">
+  <%= render @current_photo %>
+  <div>
+    <% if current_user.liked_photos.include?(@current_photo) %>
+      <%= button_to "Unlike this Photo", [@current_photo, :like], method: :delete %>
+    <% else %>
+      <%= button_to "Like this Photo", [@current_photo, :like] %>
+    <% end %>
+  </div>
+  <div>
+    <%= pluralize @likes.count, "like" %>
+  </div>
+  <div>
+    <h4>People who liked this Photo</h4>
+    <% @likers.each do |liker| %>
+      <%= liker.name %>
+    <% end %>
+  </div>
 </div>

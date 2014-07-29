@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   has_many :likes
+  has_many :likers, through: :likes, source: :user
   belongs_to :user
   has_attached_file :picture_file,
     styles: {
