@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="new-thoughts-dashboard">
-    <h2>Create a new thought</h2>
+    <h2>Send a new thought to <%= @user.name %></h2>
     <%= form_for [@user, @thought] do |form| %>
       <%= render "errors", target: @thought %>
       <%= form.label :body, "Enter your thought: " %>
@@ -38,33 +38,38 @@
   </div>
 </div>
 <div class="right-container">
-  <%= image_tag @user.profile_picture.url(:default_profile_picture) %>
-  <h2><%= @user.name %></h2>
-  <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
-  <p><b>Location:</b> <%= @user.location %></p>
-  <p><b>About <%= @user.name %>:</b> <%= @user.about_me %></p>
-  <%= link_to "Edit Profile", [:edit, @user] %>
-   
-  <h2>Thoughts from <%= @user.name %></h2>
-  <ul>
-    <% @sent_thoughts.each do |thought| %>
-      <li>
-        <%= thought.body %>
-        ...
-        thought <%= time_ago_in_words(thought.created_at) %> ago.
-      </li>
-    <% end %>
-  </ul>
-  <ul>
-    <h2>Thoughts to <%= @user.name %></h2>
-    <% @received_thoughts.each do |thought| %>
-      <li>
-        <%= thought.body %>
-        ...
-        thought <%= time_ago_in_words(thought.created_at) %> ago.
-      </li>
-    <% end %>
-  </ul>
+  <div class="user-info-dashboard">
+    <%= image_tag @user.profile_picture.url(:default_profile_picture) %>
+    <h2><%= @user.name %></h2>
+    <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
+    <p><b>Location:</b> <%= @user.location %></p>
+    <p><b>About <%= @user.name %>:</b> <%= @user.about_me %></p>
+    <%= link_to "Edit Profile", [:edit, @user] %>
+  </div>
+
+  <div class="user-thoughts-dashboard">
+    <h2>Thoughts from <%= @user.name %></h2>
+    <ul>
+      <% @sent_thoughts.each do |thought| %>
+        <li>
+          <%= thought.body %>
+          ...
+          thought <%= time_ago_in_words(thought.created_at) %> ago.
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <h2>Thoughts to <%= @user.name %></h2>
+      <% @received_thoughts.each do |thought| %>
+        <li>
+          <div><%= thought.body %></div>
+          <div class="information">
+           ..........thought by <%= link_to thought.user.name, thought.user %> | <%= time_ago_in_words(thought.created_at) %> ago
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 

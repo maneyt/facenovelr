@@ -1,22 +1,24 @@
 <div class="right-container">
-  <%= render @current_photo %>
-  <div>
-    <% if current_user.liked_photos.include?(@current_photo) %>
-      <%= button_to "Unlike this Photo", [@current_photo, :like], method: :delete %>
-    <% else %>
-      <%= button_to "Like this Photo", [@current_photo, :like] %>
-    <% end %>
-  </div>
-  <div>
-    <%= pluralize @likes.count, "like" %>
-  </div>
-  <div>
-    <h4>People who liked this Photo</h4>
-    <ul>
-      <% @likers.each do |liker| %>
-        <li><%= liker.name %></li>
+  <div class="photo-dashboard">
+    <%= render @current_photo %>
+    <div>
+      <% if current_user.liked?(@current_photo) %>
+        <%= button_to "Unlike this Photo", [@current_photo, :like], method: :delete %>
+      <% else %>
+        <%= button_to "Like this Photo", [@current_photo, :like] %>
       <% end %>
-    </ul>
+    </div>
+    <div>
+      <%= pluralize @likes.count, "like" %>
+    </div>
+    <div>
+      <h4>People who liked this Photo</h4>
+      <ul>
+        <% @likers.each do |liker| %>
+          <li><%= liker.name %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 <h3><%= link_to "Comments", "#", class: "toggle-comments" %></h3>

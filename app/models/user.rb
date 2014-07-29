@@ -61,4 +61,8 @@ class User < ActiveRecord::Base
   def all_messages
     Message.where("sender_id = :id or recipient_id = :id", { id: id }).order("created_at ASC")
   end
+
+  def liked?(photo)
+    liked_photo_ids.include?(photo.id)
+  end
 end
