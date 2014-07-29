@@ -1,6 +1,9 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :picture_file
+  has_attached_file :picture_file,
+    :styles => {
+      :thumb => "100x100#",
+  }
 
   validates :description, presence: true
   validates_attachment_presence :picture_file

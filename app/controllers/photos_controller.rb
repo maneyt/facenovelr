@@ -9,6 +9,10 @@ class PhotosController < ApplicationController
     @photos = user.photos
   end
 
+  def show
+    @photo = Photo.find(params[:id])
+  end
+
   private
 
   def photo_params

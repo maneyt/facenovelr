@@ -58,6 +58,11 @@
     </ul>
   </div>
   <div class="my-photos-dashboard">
-    <%= link_to "My photos", [current_user, :photos] %>
+    <div>
+      <%= link_to "All My photos", [current_user, :photos] %>
+    </div>
+    <% @photos.each do |photo| %>
+      <%= link_to image_tag(photo.picture_file.url(:thumb)), [current_user, photo] %>
+    <% end %>
   </div>
 </div>
