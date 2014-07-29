@@ -12,8 +12,10 @@
   </div>
   <div>
     <h4>People who liked this Photo</h4>
-    <% @likers.each do |liker| %>
-      <%= liker.name %>
-    <% end %>
+    <ul>
+      <% @likers.each do |liker| %>
+        <li><%= liker.name %></li>
+      <% end %>
+    </ul>
   </div>
 </div>

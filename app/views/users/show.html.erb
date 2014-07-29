@@ -17,6 +17,12 @@
       <%= form.submit "Submit" %>
     <% end %>
   </div>
+  <div class="user-photos-dashboard">
+    <div>
+      <%= link_to "All #{@user.name} photos", [@user, :photos] %>
+    </div>
+    <%= render partial: "photos/thumbnails", collection: @user_photos, as: :photo %>
+  </div>
 </div>
 <div class="right-container">
   <%= @user.name %>
