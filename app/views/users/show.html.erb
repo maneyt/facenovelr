@@ -38,7 +38,7 @@
   </div>
 </div>
 <div class="right-container">
-  <%= image_tag @user.profile_picture.url %>
+  <%= image_tag @user.profile_picture.url(:show_page_size) %>
   <h2><%= @user.name %></h2>
   <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
   <p><b>Location:</b> <%= @user.location %></p>
