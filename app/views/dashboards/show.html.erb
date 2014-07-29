@@ -1,47 +1,63 @@
-<div>Your Thoughts</div>
-<ul>
-  <% @my_thoughts.each do |thought| %>
-    <li><%= thought.body %></li>
-  <% end %>
-</ul>
-<div>Share Your Thoughts</div>
-<%= form_for [current_user, @thought] do |form| %>
-  <div>
-    <%= render "errors", target: @thought %>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_field :body %>
+<div class ="left-container">
+  <div class="new-thoughts-dashboard">
+    <div>Share Your Thoughts</div>
+    <%= form_for [current_user, @thought] do |form| %>
+      <div>
+        <%= render "errors", target: @thought %>
+      </div>
+      <div>
+        <%= form.label :body %>
+        <%= form.text_field :body %>
+      </div>
+      <div>
+        <%= form.submit "Share This Thought" %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= form.submit "Share This Thought" %>
+ 
+  <div class="new-photo-dashboard">
+    <%= form_for @photo do |form| %>
+      <div>
+        <h4><%= form.label "Upload new photo" %></h4>
+      </div>
+      <div>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
+      <div>
+        <%= form.file_field :picture_file %>
+      </div>
+      <div>
+        <%= form.submit "Add photo" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-<%= form_for @photo do |form| %>
-  <div>
-    <h4><%= form.label "Upload new photo" %></h4>
-  </div>
-  <div>
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-  <div>
-    <%= form.file_field :picture_file %>
-  </div>
-  <div>
-    <%= form.submit "Add photo" %>
-  </div>
-<% end %>
 
-<%= link_to "My photos", [current_user, :photos] %>
+  <div class="friends-dashboard">
+    <h4>Friends</h4>
+    <ul>
+      <% current_user.friends.each do |friend| %>
+        <li><%= link_to friend.name, friend %></li>
+      <% end %>
+    </ul>
+    <h4>Friend Requests</h4>
+    <% @friend_requests.each do |friend_request| %>
+      <li><%= friend_request.friender.name %> wants to be your friend</li>
+      <%= button_to "Accept friend", [friend_request, :accepted_friendship] %>
+    <% end %>
+  </div>
 
-<h4>Friends</h4>
-<ul>
-  <% current_user.friends.each do |friend| %>
-    <li><%= link_to friend.name, friend %></li>
-  <% end %>
-</ul>
-<h4>Friend Requests</h4>
-<% @friend_requests.each do |friend_request| %>
-  <li><%= friend_request.friender.name %> wants to be your friend</li>
-  <%= button_to "Accept friend", [friend_request, :accepted_friendship] %>
-<% end %>
+</div>
+<div class="right-container">
+  <div class="my-thoughts-dashboard">
+    <h4>My Thoughts</h4>
+    <ul>
+      <% @my_thoughts.each do |thought| %>
+        <li><%= thought.body %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="my-photos-dashboard">
+    <%= link_to "My photos", [current_user, :photos] %>
+  </div>
+</div>

@@ -1,37 +1,47 @@
-<% if current_user.can_friend(@user) %>
-  <% if current_user.received_friend_request_from?(@user) %>
-    <%= button_to "Accept friend", [current_user.friend_request_from(@user), :accepted_friendship] %>
-  <% else %>
-    <%= button_to "Send a friend request", [@user, @friendship] %>
-  <% end %>
-<% end %>
+<div class="left-container">
+  <div class="new-friends-dashboard">
+    <% if current_user.can_friend(@user) %>
+      <% if current_user.received_friend_request_from?(@user) %>
+        <%= button_to "Accept friend", [current_user.friend_request_from(@user), :accepted_friendship] %>
+      <% else %>
+        <%= button_to "Send a friend request", [@user, @friendship] %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="new-thoughts-dashboard">
+    <h2>Create a new thought</h2>
+    <%= form_for [@user, @thought] do |form| %>
+      <%= render "errors", target: @thought %>
+      <%= form.label :body, "Enter your thought: " %>
+      <%= form.text_field :body %>
+      <%= form.submit "Submit" %>
+    <% end %>
+  </div>
+</div>
+<div class="right-container">
+  <%= @user.name %>
+  <p>Birthday: <%= @user.birthday.to_formatted_s(:long) %></p>
+   
+  <h2>Thoughts from <%= @user.name %></h2>
+  <ul>
+    <% @sent_thoughts.each do |thought| %>
+      <li>
+        <%= thought.body %>
+        ...
+        thought <%= time_ago_in_words(thought.created_at) %> ago.
+      </li>
+    <% end %>
+  </ul>
+  <ul>
+    <h2>Thoughts to <%= @user.name %></h2>
+    <% @received_thoughts.each do |thought| %>
+      <li>
+        <%= thought.body %>
+        ...
+        thought <%= time_ago_in_words(thought.created_at) %> ago.
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<%= @user.name %>
 
-<p>Birthday: <%= @user.birthday.to_formatted_s(:long) %></p>
-
-<h2>Create a new thought</h2>
-<%= form_for [@user, @thought] do |form| %>
-  <%= render "errors", target: @thought %>
-  <%= form.label :body, "Enter your thought: " %>
-  <%= form.text_field :body %>
-  <%= form.submit "Submit" %>
-<% end %>
-
-<h2>Thoughts from <%= @user.name %></h2>
-<% @sent_thoughts.each do |thought| %>
-  <li>
-    <%= thought.body %>
-    ...
-    thought <%= time_ago_in_words(thought.created_at) %> ago.
-  </li>
-<% end %>
-
-<h2>Thoughts to <%= @user.name %></h2>
-<% @received_thoughts.each do |thought| %>
-  <li>
-    <%= thought.body %>
-    ...
-    thought <%= time_ago_in_words(thought.created_at) %> ago.
-  </li>
-<% end %>
