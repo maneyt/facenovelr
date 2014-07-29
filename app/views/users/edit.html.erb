@@ -1,0 +1,19 @@
+<h2>Edit your profile</h2>
+
+<%= form_for @user do |form| %>
+  <%= render "errors", target: @user %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :birthday %>
+    <%= form.date_field :birthday %>
+  </div>
+
+  <div>
+    <%= form.submit "Update" %>
+  </div>
+<% end %>

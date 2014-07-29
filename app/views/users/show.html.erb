@@ -40,6 +40,7 @@
 <div class="right-container">
   <%= @user.name %>
   <p>Birthday: <%= @user.birthday.to_formatted_s(:long) %></p>
+  <%= link_to "Edit Profile", [:edit, @user] %>
    
   <h2>Thoughts from <%= @user.name %></h2>
   <ul>
