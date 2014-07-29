@@ -13,6 +13,9 @@ class PhotosController < ApplicationController
     @current_photo = Photo.find(params[:id])
     @likes = @current_photo.likes
     @likers = @current_photo.likers
+    @photo = Photo.find(params[:id])
+    @comment = Comment.new
+    @comments = @photo.sorted_comments
   end
 
   private
