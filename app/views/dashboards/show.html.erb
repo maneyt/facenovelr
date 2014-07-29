@@ -61,8 +61,6 @@
     <div>
       <%= link_to "All My photos", [current_user, :photos] %>
     </div>
-    <% @photos.each do |photo| %>
-      <%= link_to image_tag(photo.picture_file.url(:thumb)), [current_user, photo] %>
-    <% end %>
+    <%= render partial: "photos/thumbnails", collection: @photos, as: :photo %>
   </div>
 </div>
