@@ -6,10 +6,18 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :create] do 
     resources :thoughts, only: [:create, :destroy]
-    resources :photos, only: [:index, :show]
+    resources :photos, only: [:index]
     resources :friendships, only: [:create, :destroy]
   end
-  resources :photos, only: [:create]
+
+  resources :friendships, only: [] do
+    resource :accepted_friendship, only: [:create]
+  end
+
+  resources :photos, only: [:create, :show] do
+    resource :like, only: [:create, :destroy]
+  end
+
   root to: "dashboards#show"
 
   get ":slug", to: "users#show", as: :user
