@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   resources :friendships, only: [] do
     resource :accepted_friendship, only: [:create]
   end
-
+  resources :thoughts, only: [] do
+    resources :comments, only: [:create]
+  end
   resources :photos, only: [:create, :show] do
+    resources :comments, only: [:create]
     resource :like, only: [:create, :destroy]
   end
 

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   validates :birthday, presence: true
  
+  has_many :comments, dependent: :destroy
   has_many :thoughts, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id

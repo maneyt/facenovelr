@@ -19,3 +19,15 @@
     </ul>
   </div>
 </div>
+<h3><%= link_to "Comments", "#", class: "toggle-comments" %></h3>
+<div class="comments-dashboard">
+  <div>
+    <%= form_for [@photo, @comment] do |form| %>
+      <%= form.text_field :body, placeholder: "Add Comment" %>
+      <%= form.submit "Comment" %>
+    <% end %>
+  </div>
+  <div>
+    <%= render @comments %>
+  </div>
+</div>
