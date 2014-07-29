@@ -38,8 +38,10 @@
   </div>
 </div>
 <div class="right-container">
-  <%= @user.name %>
-  <p>Birthday: <%= @user.birthday.to_formatted_s(:long) %></p>
+  <h2><%= @user.name %></h2>
+  <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
+  <p><b>Location:</b> <%= @user.location %></p>
+  <p><b>About <%= @user.name %>:</b> <%= @user.about_me %></p>
   <%= link_to "Edit Profile", [:edit, @user] %>
    
   <h2>Thoughts from <%= @user.name %></h2>

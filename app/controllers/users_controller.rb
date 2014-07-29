@@ -47,6 +47,8 @@ class UsersController < ApplicationController
       :password,
       :name,
       :birthday,
+      :location,
+      :about_me,
     )
   end
 end
