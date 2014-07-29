@@ -18,10 +18,23 @@
     <% end %>
   </div>
   <div class="user-photos-dashboard">
-    <div>
-      <%= link_to "All #{@user.name} photos", [@user, :photos] %>
-    </div>
-    <%= render partial: "photos/thumbnails", collection: @user_photos, as: :photo %>
+    <% if current_user.friends_with?(@user) || current_user == @user %>
+      <div>
+        <%= link_to "All #{@user.name} photos", [@user, :photos] %>
+      </div>
+      <%= render partial: "photos/thumbnails", collection: @user_photos, as: :photo %>
+    <% else %>
+      <p> You are not friends with <%= @user.name %>. You must be a friend to see photos. </p>
+      <div>
+        <% if current_user.can_friend(@user) %>
+          <% if current_user.received_friend_request_from?(@user) %>
+            <%= button_to "Accept friend", [current_user.friend_request_from(@user), :accepted_friendship] %>
+          <% else %>
+            <%= button_to "Send a friend request", [@user, @friendship] %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class="right-container">
