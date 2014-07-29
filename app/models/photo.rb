@@ -1,4 +1,5 @@
 class Photo < ActiveRecord::Base
+  has_many :likes
   belongs_to :user
   has_attached_file :picture_file,
     :styles => {
