@@ -20,6 +20,12 @@ class User < ActiveRecord::Base
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
   has_many :received_messages, class_name: "Message", foreign_key: :recipient_id
 
+  has_attached_file :profile_picture,
+    styles: {
+      show_page_size: "300x300#",
+    }
+  validates_attachment :profile_picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
   def incoming_friend_requests
     friendships.where(accepted: false)
   end

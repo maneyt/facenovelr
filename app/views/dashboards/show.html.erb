@@ -37,7 +37,7 @@
     <h4>Friends</h4>
     <ul>
       <% current_user.friends.each do |friend| %>
-        <li><%= link_to friend.name, friend %></li>
+        <li><%= link_to friend.name, user_show_path(friend) %></li>
       <% end %>
     </ul>
     <h4>Friend Requests</h4>
