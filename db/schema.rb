@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140729134700) do
     t.date     "birthday",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "slug"
+    t.string   "slug",            null: false
   end
 
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
