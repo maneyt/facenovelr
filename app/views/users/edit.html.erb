@@ -1,0 +1,34 @@
+<h2>Edit your profile</h2>
+
+<%= form_for @user do |form| %>
+  <%= render "errors", target: @user %>
+
+  <div>
+    <%= form.label :profile_picture %>
+    <%= form.file_field :profile_picture %>
+  </div>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :birthday %>
+    <%= form.date_field :birthday %>
+  </div>
+
+  <div>
+    <%= form.label :about_me %>
+    <%= form.text_area :about_me %>
+  </div>
+
+  <div>
+    <%= form.submit "Update" %>
+  </div>
+<% end %>

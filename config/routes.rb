@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create] do 
+
+  resources :users, only: [:new, :create, :edit, :update] do 
     resources :thoughts, only: [:create, :destroy]
     resources :photos, only: [:index]
     resources :friendships, only: [:create, :destroy]
   end
+
   resources :messages, only: [:create]
   resources :friendships, only: [] do
     resource :accepted_friendship, only: [:create]
@@ -16,5 +18,5 @@ Rails.application.routes.draw do
 
   root to: "dashboards#show"
 
-  get ":slug", to: "users#show", as: :user
+  get ":slug", to: "users#show", as: :user_show
 end
