@@ -1,0 +1,7 @@
+<p>
+  <%= message.body %>
+  >>> 
+  <%= message.sender.name %>
+  >>>
+  <%= time_ago_in_words(message.created_at) %> ago
+</p>

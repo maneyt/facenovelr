@@ -12,10 +12,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140729134700) do
 =======
 ActiveRecord::Schema.define(version: 20140729151529) do
 >>>>>>> User likes and unlikes images
+=======
+ActiveRecord::Schema.define(version: 20140729143216) do
+>>>>>>> Initial implementation of friend chat
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140729151529) do
   add_index "friendships", ["friender_id", "friendee_id"], name: "index_friendships_on_friender_id_and_friendee_id", unique: true, using: :btree
   add_index "friendships", ["friender_id"], name: "index_friendships_on_friender_id", using: :btree
 
+<<<<<<< HEAD
   create_table "likes", force: true do |t|
     t.integer  "user_id",    null: false
     t.integer  "photo_id",   null: false
@@ -42,6 +47,18 @@ ActiveRecord::Schema.define(version: 20140729151529) do
   add_index "likes", ["photo_id"], name: "index_likes_on_photo_id", using: :btree
   add_index "likes", ["user_id", "photo_id"], name: "index_likes_on_user_id_and_photo_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+=======
+  create_table "messages", force: true do |t|
+    t.string   "body",         null: false
+    t.integer  "sender_id",    null: false
+    t.integer  "recipient_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+>>>>>>> Initial implementation of friend chat
 
   create_table "photos", force: true do |t|
     t.integer  "user_id",                   null: false
