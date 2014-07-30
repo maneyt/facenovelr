@@ -66,3 +66,13 @@
 .comments-dashboard {
   display: none;
 }
+
+.search-dashboard {
+  @include span-columns(3 of 12)
+}
+
+.search-results-dashboard {
+  background: white;
+  border-radius: 3px;
+  padding: 20px;
+}

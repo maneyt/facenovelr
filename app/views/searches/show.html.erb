@@ -1,0 +1,10 @@
+<div class="outer-container">
+  <div class="search-results-dashboard">
+    <h2> Results: </h2>
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= link_to user.name, user_show_path(user) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

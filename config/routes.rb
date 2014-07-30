@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
-
+  resource :search, only: [:show]
   resources :users, only: [:new, :create, :edit, :update] do 
     resources :thoughts, only: [:create, :destroy]
     resources :photos, only: [:index]

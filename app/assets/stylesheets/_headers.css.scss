@@ -1,0 +1,13 @@
+.main-header {
+  margin-left: 40px;
+}
+
+.header-left {
+  @include span-columns(4)
+}
+
+h1 {
+  margin-right: 145px;
+  text-align: right;
+}
+
