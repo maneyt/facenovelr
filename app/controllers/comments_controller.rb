@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
   def create
     commentable = find_commentable
-    current_user.comments.create(comment_params.merge(commentable: commentable))
-    redirect_to commentable
+    comment = current_user.comments.create(comment_params.merge(commentable: commentable))
+    render comment
   end
 
   private
