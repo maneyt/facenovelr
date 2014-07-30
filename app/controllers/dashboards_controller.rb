@@ -1,6 +1,5 @@
 class DashboardsController < ApplicationController
   def show
-    @search = Search.new
     @my_photos = current_user.photos
     @thought = Thought.new
     @my_thoughts = current_user.thoughts

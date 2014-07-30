@@ -20,15 +20,15 @@
           <%= button_to "Sign out", :session, method: :delete %>
         <% end %>
       </div>
-      <div class="search-dashboard">
-        <%= form_for current_search, url: :search, method: :get do |form| %>
-          <%= form.text_field :user_name, placeholder: "Enter user to search for" %>
-        <% end %>
-      </div>
 
       <h1><%= link_to image_tag("facenovelr_logo.png"), root_path %></h1>
 
     <div class="outer-container">
+      <div class="search-dashboard">
+        <%= form_for current_search, url: :search, method: :get do |form| %>
+          <%= form.text_field :user_name, placeholder: "Enter a user to search for" %>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
 

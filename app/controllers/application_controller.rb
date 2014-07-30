@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_search
   def current_search
-    Search.new
+    @search || Search.new
   end
-
 end
