@@ -2,6 +2,12 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  has_attached_file :profile_picture,
+    styles: {
+      default_profile_picture: "300x300#",
+    }
+  validates_attachment :profile_picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/}
   validates :email, uniqueness: true, presence: true
   validates :password_digest, presence: true
@@ -19,12 +25,6 @@ class User < ActiveRecord::Base
 
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
   has_many :received_messages, class_name: "Message", foreign_key: :recipient_id
-
-  has_attached_file :profile_picture,
-    styles: {
-      show_page_size: "300x300#",
-    }
-  validates_attachment :profile_picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   def incoming_friend_requests
     friendships.where(accepted: false)
