@@ -49,23 +49,14 @@
   </div>
 
   <div class="user-thoughts-dashboard">
-    <h2>Thoughts from <%= @user.name %></h2>
-    <ul>
-      <% @sent_thoughts.each do |thought| %>
-        <li>
-          <%= thought.body %>
-          ...
-          thought <%= time_ago_in_words(thought.created_at) %> ago.
-        </li>
-      <% end %>
-    </ul>
-    <ul>
-      <h2>Thoughts to <%= @user.name %></h2>
+
+      <h2>Thoughts</h2>
       <% @received_thoughts.each do |thought| %>
         <li>
+          <div><%= link_to image_tag(thought.user.profile_picture.url(:profile_thumbnail)), user_show_path(thought.user) %></div>
           <div><%= thought.body %></div>
           <div class="information">
-           ..........thought by <%= link_to thought.user.name, thought.user %> | <%= time_ago_in_words(thought.created_at) %> ago
+          thought by <%= link_to thought.user.name, user_show_path(thought.user) %> | <%= time_ago_in_words(thought.created_at) %> ago
           </div>
         </li>
       <% end %>
