@@ -45,7 +45,9 @@
     <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
     <p><b>Location:</b> <%= @user.location %></p>
     <p><b>About <%= @user.name %>:</b> <%= @user.about_me %></p>
-    <%= link_to "Edit Profile", [:edit, @user] %>
+    <% if current_user == @user %>
+      <%= link_to "Edit Profile", [:edit, @user] %>
+    <% end %>
   </div>
 
   <div class="user-thoughts-dashboard">
