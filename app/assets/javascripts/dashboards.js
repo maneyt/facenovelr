@@ -1,3 +1,7 @@
+function scrollbar(){
+   $("#messages").scrollTop($("#messages")[0].scrollHeight);
+}
+
 $(document).ready(function(){
   $(".toggle-comments").click(function(event){
     event.preventDefault();
@@ -14,4 +18,5 @@ $(document).ready(function(){
     });
     return false;
   });
+  scrollbar();
 });

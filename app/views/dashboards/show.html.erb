@@ -74,4 +74,24 @@
       <%= form.submit "Send" %>
     <% end %>
   </div>
+  <div id="chat-tabs">
+    <ul>
+      <% @friends.each do |friend| %>
+        <li><a href="#<%= friend.slug %>"><%= friend.slug %></a></li>
+      <% end %>
+    </ul>
+    <% @friends.each do |friend| %>
+      <div id="<%= friend.slug %>">
+        <div id="messages">
+          <%= render current_user.all_messages_with(friend) %>
+        </div>
+        <%= form_for @message do |form| %>
+          <%= form.label "message" %>
+          <%= form.text_field :body %>
+          <%= form.hidden_field :recipient_id, value: friend.id %>
+          <%= form.submit "Send" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,7 +1,15 @@
-<p>
-  <%= message.body %>
-  >>> 
-  <%= message.sender.name %>
-  >>>
-  <%= time_ago_in_words(message.created_at) %> ago
-</p>
+<div>
+  <% if current_user == message.sender %>
+    <p class="current-user-message">
+      <span class="message-sender"><%= message.sender.name %></span>[<%= message.recipient.name %>]:
+      <%= message.body %>
+      <span class="information"><%= time_ago_in_words(message.created_at) %> ago</span>
+    </p>
+  <% else %>
+    <p>
+      <b><%= message.sender.name %></b>:
+      <%= message.body %>
+      <span class="information"><%= time_ago_in_words(message.created_at) %> ago</span>
+    </p>
+  <% end %>
+</div>

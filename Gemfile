@@ -17,3 +17,4 @@ gem 'neat'
 gem 'bitters'
 gem 'pusher'
 gem 'dotenv-rails', group: :development
+gem 'jquery-ui-rails'

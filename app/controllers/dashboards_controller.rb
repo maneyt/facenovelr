@@ -7,5 +7,6 @@ class DashboardsController < ApplicationController
     @friend_requests = current_user.incoming_friend_requests
     @message = Message.new
     @messages = current_user.all_messages.order("created_at ASC")
+    @friends = current_user.friends
   end
 end

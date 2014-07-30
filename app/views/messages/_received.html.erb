@@ -1,0 +1,7 @@
+<div>
+  <p>
+  <b><%= message.sender.name %></b>:
+    <%= message.body %>
+    <span class="information"><%= time_ago_in_words(message.created_at) %> ago</span>
+  </p>
+</div>
