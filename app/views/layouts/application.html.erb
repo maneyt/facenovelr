@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h1><%= link_to "Facenovelr", root_path %></h1>
+<h1><%= link_to image_tag("facenovelr_logo.png"), root_path %></h1>
 
 <% if signed_in? %>
   <h3> You are signed in as <%= link_to current_user.name, user_show_path(current_user) %></h3>
