@@ -15,4 +15,12 @@ class Photo < ActiveRecord::Base
   def sorted_comments
     comments.order("created_at DESC")
   end
+  
+  def next_photo_for_user
+    user.photos.where("created_at < ?", created_at).order("created_at ASC").last
+  end
+
+  def previous_photo_for_user
+    user.photos.where("created_at > ?", created_at).order("created_at ASC").first
+  end
 end
