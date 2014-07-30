@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
 
   has_attached_file :profile_picture,
     styles: {
-      default_profile_picture: "300x300#",
-    }
+      profile_picture: "300x300#",
+    }, default_url: "/system/photos/default_profile_image.png"
   validates_attachment :profile_picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/}
