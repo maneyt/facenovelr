@@ -1,5 +1,5 @@
-function scrollbar(){
-   $("#messages").scrollTop($("#messages")[0].scrollHeight);
+function scrollToBottom(){
+   $(".messages").scrollTop($(".messages")[0].scrollHeight);
 }
 
 $(document).ready(function(){
@@ -18,5 +18,5 @@ $(document).ready(function(){
     });
     return false;
   });
-  scrollbar();
+  scrollToBottom();
 });

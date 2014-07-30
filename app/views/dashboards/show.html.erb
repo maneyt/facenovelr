@@ -64,34 +64,27 @@
     <%= render partial: "photos/thumbnails", collection: @my_photos, as: :photo %>
   </div>
   <div class="chat-dashboard">
-    <div id="messages">
-      <%= render @messages %>
-    </div>
-    <%= form_for @message do |form| %>
-      <%= form.label "message" %>
-      <%= form.text_field :body %>
-      <%= form.collection_select :recipient_id, current_user.friends, :id, :name %>
-      <%= form.submit "Send" %>
-    <% end %>
-  </div>
-  <div id="chat-tabs">
-    <ul>
-      <% @friends.each do |friend| %>
-        <li><a href="#<%= friend.slug %>"><%= friend.slug %></a></li>
-      <% end %>
-    </ul>
-    <% @friends.each do |friend| %>
-      <div id="<%= friend.slug %>">
-        <div id="messages">
-          <%= render current_user.all_messages_with(friend) %>
-        </div>
-        <%= form_for @message do |form| %>
-          <%= form.label "message" %>
-          <%= form.text_field :body %>
-          <%= form.hidden_field :recipient_id, value: friend.id %>
-          <%= form.submit "Send" %>
+    <div id="chat-tabs">
+      <ul>
+        <% @friends.each do |friend| %>
+          <li><a href="#<%= friend.slug %>"><%= friend.slug %></a></li>
         <% end %>
-      </div>
-    <% end %>
+      </ul>
+      <% @friends.each do |friend| %>
+        <div id="<%= friend.slug %>">
+          <div class="messages">
+            <div id="friend<%= friend.id %>">
+              <%= render current_user.messages_with(friend) %>
+            </div>
+          </div>
+          <%= form_for @message do |form| %>
+            <%= form.label "message" %>
+            <%= form.text_field :body %>
+            <%= form.hidden_field :recipient_id, value: friend.id %>
+            <%= form.submit "Send" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

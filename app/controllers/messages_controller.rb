@@ -5,10 +5,12 @@ class MessagesController < ApplicationController
     to_someone_else = render_to_string(partial: "messages/received", object: message, as: :message)
 
     Pusher[message.recipient_id].trigger("send_message", {
-      message_html: to_someone_else
+      message_html: to_someone_else,
+      friend_id: message.sender_id
     })
     Pusher[message.sender_id].trigger("send_message", {
-      message_html: from_me
+      message_html: from_me,
+      friend_id: message.recipient_id
     })
   end
 
