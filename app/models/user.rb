@@ -67,4 +67,8 @@ class User < ActiveRecord::Base
   def liked?(photo)
     liked_photo_ids.include?(photo.id)
   end
+
+  def recieved_thoughts
+    Thought.where(receiver_id: id).order("created_at DESC")
+  end
 end
