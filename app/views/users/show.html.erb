@@ -40,7 +40,7 @@
 <div class="right-container">
   
   <div class="user-info-dashboard">
-    <%= image_tag @user.profile_picture.url(:default_profile_picture) %>
+    <%= image_tag @user.profile_picture.url %>
     <h2><%= @user.name %></h2>
     <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
     <p><b>Location:</b> <%= @user.location %></p>
