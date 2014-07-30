@@ -1,4 +1,15 @@
 <div class="left-container">
+  <div class="user-info-dashboard">
+    <%= image_tag @user.profile_picture.url(:profile_picture) %>
+    <h2><%= @user.name %></h2>
+    <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
+    <p><b>Location:</b> <%= @user.location %></p>
+    <p><b>About <%= @user.name %>:</b> <%= @user.about_me %></p>
+    <% if current_user == @user %>
+      <%= button_to "Edit Profile", [:edit, @user] %>
+    <% end %>
+  </div>
+
   <div class="new-friends-dashboard">
     <% if current_user.can_friend(@user) %>
       <% if current_user.received_friend_request_from?(@user) %>
@@ -8,15 +19,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="new-thoughts-dashboard">
-    <h2>Send a new thought to <%= @user.name %></h2>
-    <%= form_for [@user, @thought] do |form| %>
-      <%= render "errors", target: @thought %>
-      <%= form.label :body, "Enter your thought: " %>
-      <%= form.text_field :body %>
-      <%= form.submit "Submit" %>
-    <% end %>
-  </div>
+
   <div class="user-photos-dashboard">
     <% if current_user.friends_with?(@user) || current_user == @user %>
       <div>
@@ -38,37 +41,28 @@
   </div>
 </div>
 <div class="right-container">
-  
-  <div class="user-info-dashboard">
-    <%= image_tag @user.profile_picture.url %>
-    <h2><%= @user.name %></h2>
-    <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
-    <p><b>Location:</b> <%= @user.location %></p>
-    <p><b>About <%= @user.name %>:</b> <%= @user.about_me %></p>
-    <%= link_to "Edit Profile", [:edit, @user] %>
+  <div class="new-thoughts-dashboard">
+    <h2>Send a new thought to <%= @user.name %></h2>
+    <%= form_for [@user, @thought] do |form| %>
+      <%= render "errors", target: @thought %>
+      <%= form.label :body, "Enter your thought: " %>
+      <%= form.text_field :body %>
+      <%= form.submit "Submit" %>
+    <% end %>
   </div>
 
   <div class="user-thoughts-dashboard">
-    <h2>Thoughts from <%= @user.name %></h2>
-    <ul>
-      <% @sent_thoughts.each do |thought| %>
-        <li>
-          <%= thought.body %>
-          ...
-          thought <%= time_ago_in_words(thought.created_at) %> ago.
-        </li>
-      <% end %>
-    </ul>
-    <ul>
-      <h2>Thoughts to <%= @user.name %></h2>
-      <% @received_thoughts.each do |thought| %>
-        <li>
+    <h2>Thoughts</h2>
+    <% @received_thoughts.each do |thought| %>
+
+        <div class="individual_thought">
+          <div class="feed_profile_images"><%= link_to image_tag(thought.user.profile_picture.url(:profile_thumbnail)), user_show_path(thought.user) %></div>
+          <div class="user_name_thought"><%= link_to thought.user.name, user_show_path(thought.user) %></div>
           <div><%= thought.body %></div>
           <div class="information">
-           ..........thought by <%= link_to thought.user.name, thought.user %> | <%= time_ago_in_words(thought.created_at) %> ago
+          <%= time_ago_in_words(thought.created_at) %> ago
           </div>
-        </li>
-      <% end %>
-    </ul>
+        </div>
+    <% end %>
   </div>
 </div>

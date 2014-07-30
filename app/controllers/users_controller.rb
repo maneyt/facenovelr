@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
+  before_action :ensure_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -10,8 +11,7 @@ class UsersController < ApplicationController
     @thought = Thought.new
     @user = User.friendly.find(params[:slug])
     @user_photos = @user.photos
-    @received_thoughts = Thought.where(receiver_id: @user.id)
-    @sent_thoughts = @user.thoughts
+    @received_thoughts = @user.recieved_thoughts.order("created_at DESC")
     @friendship = Friendship.new
   end
 
@@ -51,5 +51,12 @@ class UsersController < ApplicationController
       :about_me,
       :profile_picture,
     )
+  end
+
+  def ensure_user
+    user = User.friendly.find(params[:id])
+    unless current_user == user
+      redirect_to user_show_path(user)
+    end
   end
 end

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
     default_url: ActionController::Base.helpers.asset_path("default_profile_image.png"),
     styles: {
       profile_picture: "300x300#",
+      profile_thumbnail: "75x75#",
     }
   validates_attachment :profile_picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
@@ -16,6 +17,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, dependent: :destroy
   has_many :thoughts, dependent: :destroy
+  has_many :recieved_thoughts, foreign_key: :receiver_id, class_name: "Thought"
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id
   has_many :likes
