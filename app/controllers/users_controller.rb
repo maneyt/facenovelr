@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @thought = Thought.new
     @user = User.friendly.find(params[:slug])
     @user_photos = @user.photos
-    @received_thoughts = @user.recieved_thoughts
+    @received_thoughts = @user.recieved_thoughts.order("created_at DESC")
     @friendship = Friendship.new
   end
 

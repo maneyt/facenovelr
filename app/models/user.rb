@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, dependent: :destroy
   has_many :thoughts, dependent: :destroy
+  has_many :recieved_thoughts, foreign_key: :receiver_id, class_name: "Thought"
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id
   has_many :likes
@@ -66,9 +67,5 @@ class User < ActiveRecord::Base
 
   def liked?(photo)
     liked_photo_ids.include?(photo.id)
-  end
-
-  def recieved_thoughts
-    Thought.where(receiver_id: id).order("created_at DESC")
   end
 end
