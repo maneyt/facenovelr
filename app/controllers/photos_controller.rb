@@ -11,6 +11,8 @@ class PhotosController < ApplicationController
 
   def show
     @current_photo = Photo.find(params[:id])
+    @previous_photo = @current_photo.previous_photo_for_user
+    @next_photo = @current_photo.next_photo_for_user
     @likes = @current_photo.likes
     @likers = @current_photo.likers
     @photo = Photo.find(params[:id])

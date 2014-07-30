@@ -1,6 +1,13 @@
 <div class="right-container">
   <div class="photo-dashboard">
     <%= render @current_photo %>
+    <% if @previous_photo %>
+      <%= link_to "Previous", @previous_photo %>
+    <% end %>
+
+    <% if @next_photo %>
+      <%= link_to "next", @next_photo %>
+    <% end %>
     <div>
       <% if current_user.liked?(@current_photo) %>
         <%= button_to "Unlike this Photo", [@current_photo, :like], method: :delete %>
