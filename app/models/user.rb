@@ -53,6 +53,12 @@ class User < ActiveRecord::Base
     self != user && !friends_with?(user) && !sent_friend_request_to?(user)
   end
 
+  def unfriend(user)
+    transaction do
+      self.friends.destroy(user)
+      user.friends.destroy(self)
+    end
+  end
   def like_photo(photo)
     liked_photos << photo
   end

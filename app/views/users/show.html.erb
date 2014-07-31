@@ -11,11 +11,17 @@
   </div>
 
   <div class="new-friends-dashboard">
-    <% if current_user.can_friend(@user) %>
-      <% if current_user.received_friend_request_from?(@user) %>
-        <%= button_to "Accept friend", [current_user.friend_request_from(@user), :accepted_friendship] %>
-      <% else %>
-        <%= button_to "Send a friend request", [@user, @friendship] %>
+    <% if current_user.friends_with?(@user)%>
+      <div>
+        <%= button_to "Unfriend this user", [@user, :friendship], method: :delete %>
+      </div>
+    <% else %>
+      <% if current_user.can_friend(@user) %>
+        <% if current_user.received_friend_request_from?(@user) %>
+          <%= button_to "Accept friend", [@friend_request, :accepted_friendship] %>
+        <% else %>
+          <%= button_to "Send a friend request", [@user, :friendship] %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -33,7 +39,7 @@
           <% if current_user.received_friend_request_from?(@user) %>
             <%= button_to "Accept friend", [current_user.friend_request_from(@user), :accepted_friendship] %>
           <% else %>
-            <%= button_to "Send a friend request", [@user, @friendship] %>
+            <%= button_to "Send a friend request", [@user, :friendship] %>
           <% end %>
         <% end %>
       </div>

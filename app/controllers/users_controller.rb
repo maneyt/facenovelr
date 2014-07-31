@@ -7,13 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @friendship = Friendship.new
     @thought = Thought.new
     @user = User.friendly.find(params[:slug])
     @user_photos = @user.photos
     @received_thoughts = @user.recieved_thoughts.order("created_at DESC")
-    @friendship = Friendship.new
-  end
+    @friend_request = current_user.friend_request_from(@user)end
 
   def create
     @user = sign_up(user_params)
