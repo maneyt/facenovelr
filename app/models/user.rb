@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   has_attached_file :profile_picture, 
-    default_url: ActionController::Base.helpers.asset_path("default_profile_image.png"),
+    default_url: "default_:style.png",
     styles: {
-      profile_picture: "300x300#",
-      profile_thumbnail: "75x75#",
+      medium: "300x300#",
+      thumbnail: "75x75#",
     }
   validates_attachment :profile_picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 

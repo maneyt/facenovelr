@@ -1,6 +1,6 @@
 <div class="left-container">
   <div class="user-info-dashboard">
-    <%= image_tag @user.profile_picture.url(:profile_picture) %>
+    <%= image_tag @user.profile_picture.url(:medium) %>
     <h2><%= @user.name %></h2>
     <p><b>Birthday:</b> <%= @user.birthday.to_formatted_s(:long) %></p>
     <p><b>Location:</b> <%= @user.location %></p>
@@ -56,7 +56,7 @@
     <% @received_thoughts.each do |thought| %>
 
         <div class="individual_thought">
-          <div class="feed_profile_images"><%= link_to image_tag(thought.user.profile_picture.url(:profile_thumbnail)), user_show_path(thought.user) %></div>
+          <div class="feed_profile_images"><%= link_to image_tag(thought.user.profile_picture.url(:thumbnail)), user_show_path(thought.user) %></div>
           <div class="user_name_thought"><%= link_to thought.user.name, user_show_path(thought.user) %></div>
           <div><%= thought.body %></div>
           <div class="information">
