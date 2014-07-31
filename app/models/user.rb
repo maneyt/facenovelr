@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, dependent: :destroy
   has_many :thoughts, dependent: :destroy
-  has_many :recieved_thoughts, foreign_key: :receiver_id, class_name: "Thought"
+  has_many :received_thoughts, foreign_key: :receiver_id, class_name: "Thought"
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id
   has_many :likes
@@ -79,5 +79,9 @@ class User < ActiveRecord::Base
 
   def liked?(photo)
     liked_photo_ids.include?(photo.id)
+  end
+
+  def timeline
+    Thought.where(user_id: friend_ids + [id])
   end
 end

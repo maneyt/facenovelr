@@ -50,12 +50,8 @@
 </div>
 <div class="right-container">
   <div class="my-thoughts-dashboard">
-    <h4>My Thoughts</h4>
-    <ul>
-      <% @my_thoughts.each do |thought| %>
-        <li><%= thought.body %></li>
-      <% end %>
-    </ul>
+    <h4>Timeline</h4>
+    <%= render @timeline %>
   </div>
   <div class="my-photos-dashboard">
     <div>

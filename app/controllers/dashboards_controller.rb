@@ -7,5 +7,6 @@ class DashboardsController < ApplicationController
     @friend_requests = current_user.incoming_friend_requests
     @message = Message.new
     @friends = current_user.friends
+    @timeline = current_user.timeline.newest_first
   end
 end
