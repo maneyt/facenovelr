@@ -12,7 +12,7 @@ Facenovelr is a social networking app that allows you to connect with friends.
 * Chat with friends through a pusher enabled chat box.
 * Post a thought (can be thought of as a "status").
 * Comment on friends thoughts.
-* Like a friends photo or thought.
+* Like a friends photo, thought, or comment.
 * and so much more...
 
 ## Contributors
