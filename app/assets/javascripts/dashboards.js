@@ -16,7 +16,8 @@ $(document).ready(function(){
       $(".comments-dashboard").prepend(html);
       $("#comment_body").val("");
     });
-  return false;
+    
+    return false;
   });
 
   $(".thought-comment").on("submit", function(event){
@@ -26,7 +27,7 @@ $(document).ready(function(){
       $(this).attr("action"),
       $(this).serialize()
     ).done(function(html){
-      $("#thought-comments-dashboard-"+thoughtId).append(html);
+      $("#thought-comments-dashboard-" + thoughtId).append(html);
       $("#comment_body").val("");
     });
 
