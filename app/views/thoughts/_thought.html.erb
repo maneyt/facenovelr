@@ -5,4 +5,5 @@
   <div class="information">
     <%= time_ago_in_words(thought.created_at) %> ago
   </div>
+  <%= render "like_button", object: thought %>
 </div>
