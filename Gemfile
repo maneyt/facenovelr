@@ -17,3 +17,4 @@ gem 'bitters'
 gem 'pusher'
 gem 'dotenv-rails', group: :development
 gem 'jquery-ui-rails'
+gem 'rails_12factor', group: :production
