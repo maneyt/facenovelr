@@ -59,7 +59,17 @@
 
   <div class="user-thoughts-dashboard">
     <h2>Thoughts</h2>
-    <%= render @received_thoughts %>
+    <% @received_thoughts.each do |thought| %>
+
+        <div class="individual_thought">
+          <div class="feed_profile_images"><%= link_to image_tag(thought.user.profile_picture.url(:thumbnail)), user_show_path(thought.user) %></div>
+          <div class="user_name_thought"><%= link_to thought.user.name, user_show_path(thought.user) %></div>
+          <div><%= thought.body %></div>
+          <div class="information">
+            <%= time_ago_in_words(thought.created_at) %> ago
+          </div>
+          <%= render "like_button", object: thought %>
+        </div>
         <div>
           <div class="thought-comments-dashboard" id="thought-comments-dashboard-<%= thought.id %>">
             <ul>

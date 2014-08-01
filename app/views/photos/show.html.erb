@@ -8,13 +8,7 @@
     <% if @next_photo %>
       <%= link_to "next", @next_photo %>
     <% end %>
-    <div>
-      <% if current_user.liked?(@current_photo) %>
-        <%= button_to "Unlike this Photo", [@current_photo, :like], method: :delete %>
-      <% else %>
-        <%= button_to "Like this Photo", [@current_photo, :like] %>
-      <% end %>
-    </div>
+    <%= render "like_button", object: @current_photo %>
     <div>
       <%= pluralize @likes.count, "like" %>
     </div>

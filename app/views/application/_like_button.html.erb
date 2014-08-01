@@ -1,0 +1,7 @@
+<div>
+  <% if object.likers.include?(current_user)%>
+    <%= button_to "Unlike",  [object, :like], method: :delete %>
+  <% else %>
+    <%= button_to "Like", [object, :like] %>
+  <% end %>
+</div>

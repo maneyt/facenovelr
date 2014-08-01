@@ -12,10 +12,15 @@ Rails.application.routes.draw do
     resource :accepted_friendship, only: [:create]
   end
   resources :thoughts, only: [] do
+    resource :like, only: [:create, :destroy]
     resources :comments, only: [:create]
   end
   resources :photos, only: [:create, :show] do
     resources :comments, only: [:create]
+    resource :like, only: [:create, :destroy]
+  end
+
+  resources :comments, only: [] do
     resource :like, only: [:create, :destroy]
   end
 
