@@ -7,3 +7,14 @@
   </div>
   <%= render "like_button", object: thought %>
 </div>
+<div>
+  <div class="thought-comments-dashboard" id="thought-comments-dashboard-<%= thought.id %>">
+    <ul>
+      <% thought.comments.each do |comment| %>
+        <li>
+          <%= render comment %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
