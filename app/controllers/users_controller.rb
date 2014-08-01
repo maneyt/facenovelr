@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @thought = Thought.new
     @user = User.friendly.find(params[:slug])
     @user_photos = @user.photos
