@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id
   has_many :accepted_friendships, -> { where(accepted: true) }, foreign_key: :friendee_id, class_name: "Friendship"
+  has_many :likes, dependent: :destroy
   has_many :friends, through: :accepted_friendships, source: :friender
 
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
