@@ -80,7 +80,7 @@
             </ul>
           </div>
         <div>
-          <%= form_for [thought, @comment], html: {class: "thought-comment", "data-thought-id" => thought.id } do |form| %>
+          <%= form_for [thought, @comment], html: { class: "thought-comment", "data-thought-id" => thought.id } do |form| %>
             <%= form.text_field :body, placeholder: "add to the conversation" %>
           <% end %>
         </div>
