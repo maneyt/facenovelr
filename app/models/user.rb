@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
   has_many :received_thoughts, foreign_key: :receiver_id, class_name: "Thought"
   has_many :photos, dependent: :destroy
   has_many :friendships, foreign_key: :friendee_id
-  has_many :likes
-  has_many :liked_photos, through: :likes, source: :photo
-
   has_many :accepted_friendships, -> { where(accepted: true) }, foreign_key: :friendee_id, class_name: "Friendship"
   has_many :friends, through: :accepted_friendships, source: :friender
 
@@ -75,10 +72,6 @@ class User < ActiveRecord::Base
     Message.where("(sender_id = :user and recipient_id = :other_user) 
                   or (sender_id = :other_user and recipient_id = :user)",
                   {user: id, other_user: user.id}).order("created_at ASC")
-  end
-
-  def liked?(photo)
-    liked_photo_ids.include?(photo.id)
   end
 
   def timeline

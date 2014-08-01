@@ -10,4 +10,5 @@
     <div class="information">
       <%= time_ago_in_words(comment.created_at) %> ago
     </div>
+    <%= render "like_button", object: comment %>
 </div>
