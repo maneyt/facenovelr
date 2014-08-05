@@ -1,6 +1,6 @@
 <div>
   <p class="current-user-message">
-    <span class="message-sender"><%= message.sender.name %></span>[<%= message.recipient.name %>]:
+    <span class="message-sender"><%= message.sender.name %></span>:
     <%= message.body %>
     <span class="information"><%= time_ago_in_words(message.created_at) %> ago</span>
   </p>
